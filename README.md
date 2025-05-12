@@ -74,3 +74,4 @@ Cada funcionalidad a implementar se desarrollará en una **rama individual**. Ca
 | -------------------------- | --------------------- |
 | Matias Gabriel Ortega      | `@MatiasGOrtega`      |
 | Salim Farid Quintar        | `@safaqui00`          | 
+| Cari Lucas Enrique         | `@CariLucky`          | 
