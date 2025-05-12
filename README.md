@@ -35,7 +35,7 @@ La aplicación debe permitir al usuario:
 2. Navegar a directorio del proyecto:
 
    ```bash
-   cd pv_tp3_grupo14
+   cd pv_tp4_grupo14
    ```
 
 3. Instalar las dependencias necesarias:
