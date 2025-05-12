@@ -76,4 +76,4 @@ Cada funcionalidad a implementar se desarrollará en una **rama individual**. Ca
 | Salim Farid Quintar        | `@safaqui00`          | 
 | Cari Lucas Enrique         | `@CariLucky`          | 
 | Rodrigo Alexis Guanactolay | `GuanactolayRodrigo`  |
-
+| Balcazar Victor Fernando   | `@vfbalcazar08`       |
