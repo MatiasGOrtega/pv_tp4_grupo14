@@ -1,8 +1,6 @@
 import ProductItem from "./ProductItem";
 
-function ProductList({
-  products,
-}) {
+function ProductList({ products, onDelete, onEdit }) {
   return (
     <div className="product-list">
       <h2>Lista de Productos</h2>
@@ -14,6 +12,8 @@ function ProductList({
             <ProductItem
               key={product.id}
               product={product}
+              onDelete={onDelete}
+              onEdit={onEdit}
             />
           ))}
         </ul>
