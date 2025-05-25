@@ -1,15 +1,18 @@
-function ProductItem({ product }) {
+function ProductItem({ product, onDelete, onEdit }) {
   return (
     <li key={product.id} className='product-item'>
       <div>
-        <strong>{product.descripcion}</strong> - ${product.precioUnitario.toFixed(2)} -
-        Stock: {product.stock}
-        <small> (ID: {product.id})</small>
+        <p><strong>Descripción:</strong> {product.descripcion}</p>
+        <p><strong>Precio Unitario:</strong> ${product.precioUnitario.toFixed(2)}</p>
+        <p><strong>Descuento:</strong> {product.descuento}%</p>
+        <p><strong>Precio con Descuento:</strong> ${product.precioConDescuento.toFixed(2)}</p>
+        <p><strong>Stock:</strong> {product.stock}</p>
+        <small>(ID: {product.id})</small>
       </div>
       <div>
-        <button onClick={() => { }}>Editar</button>
+        <button onClick={() => onEdit(product)}>Editar</button>
         <button
-          onClick={() => { }}
+          onClick={() => onDelete(product.id)}
         >
           Eliminar
         </button>
