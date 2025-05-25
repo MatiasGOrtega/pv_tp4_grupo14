@@ -30,6 +30,7 @@ function App() {
         onUpdate={handleUpdateProduct}
         editingProduct={editingProduct}
       />
+      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
     </div>
   );
 }
