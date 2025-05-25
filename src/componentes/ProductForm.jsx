@@ -1,4 +1,9 @@
-function ProductForm() {
+import { useState, useEffect } from 'react';
+
+
+function ProductForm({ onAdd, onUpdate, editingProduct }) {
+
+  
   const [product, setProduct] = useState({
     id: '',
     descripcion: '',
