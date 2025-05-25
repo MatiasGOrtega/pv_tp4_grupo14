@@ -8,6 +8,21 @@ function ProductForm() {
   });
   const [contadorId, setContadorId] = useState(1);
 
+useEffect(() => {
+    if (editingProduct) {
+      setProduct(editingProduct);
+    } else {
+      setProduct({ id: '', descripcion: '', precioUnitario: '', descuento: '', stock: '' });
+    }
+  }, [editingProduct]);
+
+
+const handleChange = (e) => {
+    const { name, value } = e.target;
+    setProduct(prev => ({ ...prev, [name]: value }));
+  };
+
+
 const handleSubmit = (e) => {
     e.preventDefault();
     const precioConDescuento =
@@ -23,6 +38,9 @@ const handleSubmit = (e) => {
 
     setProduct({ id: '', descripcion: '', precioUnitario: '', descuento: '', stock: '' });
   };
+
+
+
   return (
     
 
