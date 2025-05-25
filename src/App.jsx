@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import ProductForm from './components/ProductForm';
-import ProductList from './components/ProductList';
-import SearchBar from './components/SearchBar';
+import ProductForm from './componentes/ProductForm';
+import ProductList from './componentes/ProductList';
+import SearchBar from './componentes/SearchBar';
 import './App.css'
 
 function App() {
