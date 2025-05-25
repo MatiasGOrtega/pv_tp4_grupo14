@@ -13,7 +13,16 @@ const handleSubmit = (e) => {
     const precioConDescuento =
       product.precioUnitario * (1 - product.descuento / 100);
     const newProduct = { ...product,id:+product.id, precioUnitario: +product.precioUnitario, descuento: +product.descuento, stock: +product.stock, precioConDescuento };
+   if (editingProduct) {
+      onUpdate(newProduct);
+    } else {
+      newProduct.id = contadorId;
+      setContadorId(prev => prev + 1);
+      onAdd(newProduct);
+    }
 
+    setProduct({ id: '', descripcion: '', precioUnitario: '', descuento: '', stock: '' });
+  };
   return (
     
 
@@ -24,8 +33,8 @@ const handleSubmit = (e) => {
       <input className='in' name="stock" type="number" placeholder="Stock" value={product.stock} onChange={handleChange} required />
       <button type="submit">{editingProduct ? 'Actualizar' : 'Agregar'} Producto</button>
     </form>
-  );}
-
+  );
 }
+
 
 export default ProductForm
