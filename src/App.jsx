@@ -6,7 +6,22 @@ function App() {
   const [editingProduct, setEditingProduct] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
 
+  useEffect(() => {
+    console.log('Productos actualizados:', products);
+  }, [products]);
+
+  const handleAddProduct = useCallback((product) => {
+    setProducts(prev => [...prev, product]);
+  }, []);
+
   return (
+    <div className="container">
+      <h1>Gestión de Productos</h1>
+      
+      <ProductForm
+        onAdd={handleAddProduct}
+      />
+    </div>
   );
 }
 
