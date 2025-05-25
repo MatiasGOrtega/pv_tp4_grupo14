@@ -14,12 +14,21 @@ function App() {
     setProducts(prev => [...prev, product]);
   }, []);
 
+  const handleUpdateProduct = useCallback((updatedProduct) => {
+    setProducts(prev =>
+      prev.map(p => (p.id === updatedProduct.id ? updatedProduct : p))
+    );
+    setEditingProduct(null);
+  }, []);
+
   return (
     <div className="container">
       <h1>Gestión de Productos</h1>
       
       <ProductForm
         onAdd={handleAddProduct}
+        onUpdate={handleUpdateProduct}
+        editingProduct={editingProduct}
       />
     </div>
   );
