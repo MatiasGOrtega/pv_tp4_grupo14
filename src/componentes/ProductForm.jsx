@@ -59,7 +59,7 @@ const ProductForm = ({ onAdd, onUpdate, editingProduct }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="product-form" onSubmit={handleSubmit}>
       <input
         className="in"
         name="descripcion"
