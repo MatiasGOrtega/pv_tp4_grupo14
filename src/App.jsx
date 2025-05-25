@@ -1,4 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react';
+import ProductForm from './components/ProductForm';
+import ProductList from './components/ProductList';
+import SearchBar from './components/SearchBar';
 import './App.css'
 
 function App() {
@@ -16,6 +19,10 @@ function App() {
 
   const handleDeleteProduct = useCallback((id) => {
     setProducts(prev => prev.filter(p => p.id !== id));
+  }, []);
+
+  const handleEditProduct = useCallback((product) => {
+    setEditingProduct(product);
   }, []);
 
   const handleUpdateProduct = useCallback((updatedProduct) => {
