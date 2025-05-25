@@ -14,12 +14,24 @@ function App() {
     setProducts(prev => [...prev, product]);
   }, []);
 
+  const handleDeleteProduct = useCallback((id) => {
+    setProducts(prev => prev.filter(p => p.id !== id));
+  }, []);
+
   const handleUpdateProduct = useCallback((updatedProduct) => {
     setProducts(prev =>
       prev.map(p => (p.id === updatedProduct.id ? updatedProduct : p))
     );
     setEditingProduct(null);
   }, []);
+
+  const filteredProducts = useMemo(() => {
+   return products.filter(p =>
+     p.descripcion.toLowerCase().includes(searchTerm.toLowerCase()) ||
+     p.id.toString().includes(searchTerm)
+   );
+  }, [products, searchTerm]);
+
 
   return (
     <div className="container">
@@ -31,6 +43,11 @@ function App() {
         editingProduct={editingProduct}
       />
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      <ProductList
+        products={filteredProducts}
+        onDelete={handleDeleteProduct}
+        onEdit={handleEditProduct}
+      />
     </div>
   );
 }
