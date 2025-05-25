@@ -49,7 +49,7 @@ const handleSubmit = (e) => {
   return (
     
 
-    <form onSubmit={handleSubmit}>
+    <form className="product-form" onSubmit={handleSubmit}>
       <input className='in' name="descripcion" placeholder="Descripción" value={product.descripcion} onChange={handleChange} required />
       <input className='in' name="precioUnitario" type="number" placeholder="Precio Unitario" value={product.precioUnitario} onChange={handleChange} required />
       <input className='in' name="descuento" type="number" placeholder="Descuento %" value={product.descuento} onChange={handleChange} required />
