@@ -1,37 +1,31 @@
 function ProductForm() {
-  return (
-    <div className="product-form">
-      <h2>Formulario</h2>
-      <input
-        type="text"
-        name="id"
-        placeholder="ID"
-        required
-      />
-      <input
-        type="text"
-        name="description"
-        placeholder="Descripción"
-        required
-      />
-      <input
-        type="number"
-        name="price"
-        placeholder="Precio"
-        min="0"
-        step="0.01"
-        required
-      />
-      <input
-        type="number"
-        name="stock"
-        placeholder="Stock"
-        min="0"
-      />
+  const [product, setProduct] = useState({
+    id: '',
+    descripcion: '',
+    precioUnitario: '',
+    descuento: '',
+    stock: ''
+  });
+  const [contadorId, setContadorId] = useState(1);
 
-      <button onClick={() => { }}>Agregar Producto</button>
-    </div>
-  );
+const handleSubmit = (e) => {
+    e.preventDefault();
+    const precioConDescuento =
+      product.precioUnitario * (1 - product.descuento / 100);
+    const newProduct = { ...product,id:+product.id, precioUnitario: +product.precioUnitario, descuento: +product.descuento, stock: +product.stock, precioConDescuento };
+
+  return (
+    
+
+    <form onSubmit={handleSubmit}>
+      <input className='in' name="descripcion" placeholder="Descripción" value={product.descripcion} onChange={handleChange} required />
+      <input className='in' name="precioUnitario" type="number" placeholder="Precio Unitario" value={product.precioUnitario} onChange={handleChange} required />
+      <input className='in' name="descuento" type="number" placeholder="Descuento %" value={product.descuento} onChange={handleChange} required />
+      <input className='in' name="stock" type="number" placeholder="Stock" value={product.stock} onChange={handleChange} required />
+      <button type="submit">{editingProduct ? 'Actualizar' : 'Agregar'} Producto</button>
+    </form>
+  );}
+
 }
 
 export default ProductForm
