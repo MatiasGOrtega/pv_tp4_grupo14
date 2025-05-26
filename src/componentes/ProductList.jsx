@@ -1,3 +1,4 @@
+import { memo } from "react";
 import ProductItem from "./ProductItem";
 
 const ProductList = ({ products, onDelete, onEdit }) => (
@@ -20,4 +21,4 @@ const ProductList = ({ products, onDelete, onEdit }) => (
   </div>
 );
 
-export default ProductList;
+export default memo(ProductList);
