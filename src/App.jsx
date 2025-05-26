@@ -35,6 +35,10 @@ function App() {
     setEditingProduct(null);
   }, []);
 
+  const handleResetForm = useCallback(() => {
+    setEditingProduct(null);
+  }, []);
+
   const filteredProducts = useMemo(() => {
     if (!searchTerm) return products;
 
@@ -53,6 +57,7 @@ function App() {
         editingProduct={editingProduct}
         onAdd={handleAddProduct}
         onUpdate={handleUpdateProduct}
+        onReset={handleResetForm}
       />
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <ProductList

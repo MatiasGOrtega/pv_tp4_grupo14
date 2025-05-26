@@ -1,6 +1,14 @@
 import { useState, useEffect } from "react";
 
-const ProductForm = ({ onAdd, onUpdate, editingProduct }) => {
+const productDefault = {
+  id: "",
+  descripcion: "",
+  precioUnitario: "",
+  descuento: "",
+  stock: "",
+};
+
+const ProductForm = ({ editingProduct, onAdd, onUpdate, onReset }) => {
   const [product, setProduct] = useState({
     id: "",
     descripcion: "",
@@ -14,13 +22,7 @@ const ProductForm = ({ onAdd, onUpdate, editingProduct }) => {
     if (editingProduct) {
       setProduct(editingProduct);
     } else {
-      setProduct({
-        id: "",
-        descripcion: "",
-        precioUnitario: "",
-        descuento: "",
-        stock: "",
-      });
+      setProduct(productDefault);
     }
   }, [editingProduct]);
 
@@ -31,31 +33,24 @@ const ProductForm = ({ onAdd, onUpdate, editingProduct }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const precioConDescuento =
-      product.precioUnitario * (1 - product.descuento / 100);
+    const precioConDescuento = product.precioUnitario * (1 - product.descuento / 100);
+    console.log("Precio con descuento:", precioConDescuento);
     const newProduct = {
-      ...product,
-      id: +product.id,
-      precioUnitario: +product.precioUnitario,
-      descuento: +product.descuento,
-      stock: +product.stock,
-      precioConDescuento,
+      descripcion: product.descripcion,
+      precioConDescuento: precioConDescuento,
+      precioUnitario: parseFloat(product.precioUnitario),
+      descuento: parseFloat(product.descuento),
+      stock: parseInt(product.stock, 10),
     };
     if (editingProduct) {
-      onUpdate(newProduct);
+      onUpdate({ ...newProduct, id: editingProduct.id });
     } else {
       newProduct.id = contadorId;
       setContadorId((prev) => prev + 1);
       onAdd(newProduct);
     }
 
-    setProduct({
-      id: "",
-      descripcion: "",
-      precioUnitario: "",
-      descuento: "",
-      stock: "",
-    });
+    setProduct(productDefault);
   };
 
   return (
@@ -98,6 +93,11 @@ const ProductForm = ({ onAdd, onUpdate, editingProduct }) => {
       <button type="submit">
         {editingProduct ? "Actualizar" : "Agregar"} Producto
       </button>
+      {editingProduct && (
+        <button type="button" onClick={onReset}>
+          Cancelar
+        </button>
+      )}
     </form>
   );
 };
