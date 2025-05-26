@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 const SearchBar = ({searchTerm, setSearchTerm}) => {
   return (
     <div className="search-bar">
@@ -12,4 +14,4 @@ const SearchBar = ({searchTerm, setSearchTerm}) => {
   );
 };
 
-export default SearchBar
+export default memo(SearchBar)

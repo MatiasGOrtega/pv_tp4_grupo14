@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 const ProductItem = ({ product, onDelete, onEdit }) => (
   <li key={product.id} className="product-item">
     <div>
@@ -26,4 +28,4 @@ const ProductItem = ({ product, onDelete, onEdit }) => (
   </li>
 );
 
-export default ProductItem;
+export default memo(ProductItem);

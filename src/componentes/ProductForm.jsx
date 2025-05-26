@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 
 const productDefault = {
   id: "",
@@ -34,7 +34,6 @@ const ProductForm = ({ editingProduct, onAdd, onUpdate, onReset }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const precioConDescuento = product.precioUnitario * (1 - product.descuento / 100);
-    console.log("Precio con descuento:", precioConDescuento);
     const newProduct = {
       descripcion: product.descripcion,
       precioConDescuento: precioConDescuento,
@@ -102,4 +101,4 @@ const ProductForm = ({ editingProduct, onAdd, onUpdate, onReset }) => {
   );
 };
 
-export default ProductForm;
+export default memo(ProductForm);
