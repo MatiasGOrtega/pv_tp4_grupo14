@@ -18,36 +18,41 @@ function App() {
   }, []);
 
   const handleDeleteProduct = useCallback((id) => {
-    setProducts(prev => prev.filter(p => p.id !== id));
-  }, []);
+    setProducts(prevProd => prevProd.filter(product => product.id !== id));
+    if (editingProduct?.id === id) {
+      setEditingProduct(null);
+    }
+  }, [editingProduct]);
 
   const handleEditProduct = useCallback((product) => {
     setEditingProduct(product);
   }, []);
 
   const handleUpdateProduct = useCallback((updatedProduct) => {
-    setProducts(prev =>
-      prev.map(p => (p.id === updatedProduct.id ? updatedProduct : p))
+    setProducts(prevProds =>
+      prevProds.map(product => (product.id === updatedProduct.id ? updatedProduct : product))
     );
     setEditingProduct(null);
   }, []);
 
   const filteredProducts = useMemo(() => {
-   return products.filter(p =>
-     p.descripcion.toLowerCase().includes(searchTerm.toLowerCase()) ||
-     p.id.toString().includes(searchTerm)
-   );
+    if (!searchTerm) return products;
+
+    return products.filter(p =>
+      p.descripcion.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      p.id.toString().includes(searchTerm)
+    );
   }, [products, searchTerm]);
 
 
   return (
     <div className="container">
       <h1>Gestión de Productos</h1>
-      
+
       <ProductForm
+        editingProduct={editingProduct}
         onAdd={handleAddProduct}
         onUpdate={handleUpdateProduct}
-        editingProduct={editingProduct}
       />
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <ProductList
